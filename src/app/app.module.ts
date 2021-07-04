@@ -3,6 +3,13 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
+import {RouterModule, Routes} from '@angular/router';
+
+const routes: Routes = [
+  { path: 'home/:id', component: AppComponent },
+  { path: '',   redirectTo: '/home/:id', pathMatch: 'full' },
+  { path: '**', component: AppComponent }
+];
 
 @NgModule({
   declarations: [
@@ -10,7 +17,8 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot(routes),
   ],
   providers: [],
   bootstrap: [AppComponent]

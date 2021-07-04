@@ -1,8 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { DOCUMENT } from '@angular/common';
-
 import { ZoomMtg } from '@zoomus/websdk';
+import {ActivatedRoute} from '@angular/router';
 
 ZoomMtg.preLoadWasm();
 ZoomMtg.prepareJssdk();
@@ -27,12 +27,14 @@ export class AppComponent implements OnInit {
   userEmail = ''
   passWord = ''
 
-  constructor(public httpClient: HttpClient, @Inject(DOCUMENT) document) {
+  constructor(public httpClient: HttpClient, @Inject(DOCUMENT) document,  private route: ActivatedRoute) {
 
   }
 
   ngOnInit() {
-
+    this.route.queryParams.subscribe(params => {
+      console.log(params['id']);
+    });
   }
 
   getSignature() {
